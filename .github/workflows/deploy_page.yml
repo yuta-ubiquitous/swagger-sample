@@ -32,6 +32,8 @@ jobs:
               run: sed -i 's|https://petstore.swagger.io/v2/swagger.json|./docs/openapi.yml|g' ./docs/swagger-initializer.js
             - name: check js 2
               run: cat docs/swagger-initializer.js
+            - name: Remove symlinks and hardlinks
+              run: find docs/ -type l -exec rm -f {} \;
             - name: Upload static files as artifact
               uses: actions/upload-artifact@v4
               with:
