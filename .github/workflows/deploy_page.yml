@@ -8,9 +8,15 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
-            - name: Inspect files after checkout
+            - name: clone swagger-ui
+              run: git clone https://github.com/swagger-api/swagger-ui.git
+            - name: checkfiles
               run: ls -la
-            - name: show current directory after checkout
-              run: pwd
-            - name: show all branches after checkout
-              run: git branch -a
+            - name: copy
+              run: cp -r swagger-ui/dist/* docs/
+            - name: copy 2
+              run: cp openapi.yml docs/
+            - name: checkfiles 2
+              run: ls -la
+            - name: checkfiles 3
+              run: ls docs -la
