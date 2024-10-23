@@ -20,3 +20,9 @@ jobs:
               run: ls -la
             - name: checkfiles 3
               run: ls docs -la
+            - name: check js
+              run: cat docs/swagger-initializer.js
+            - name: replace url
+              run: sed -i 's|https://petstore.swagger.io/v2/swagger.json|./docs/openapi.yml|g' ./docs/swagger-initializer.js
+            - name: check js 2
+              run: cat docs/swagger-initializer.js
