@@ -10,28 +10,18 @@ jobs:
         uses: actions/checkout@v4
       - name: clone swagger-ui
         run: git clone https://github.com/swagger-api/swagger-ui.git
-      - name: checkfiles
-        run: ls -la
+      - name: make dist folder
+        run: mkdir dist
       - name: copy
-        run: cp -r swagger-ui/dist/* docs/
+        run: cp -r swagger-ui/dist/* dist/
       - name: copy 2
-        run: cp openapi.yml docs/
-      - name: checkfiles 2
-        run: ls -la
-      - name: checkfiles 3
-        run: ls docs -la
-      - name: check js
-        run: cat docs/swagger-initializer.js
+        run: cp openapi.yml dist/
       - name: replace url
-        run: sed -i 's|https://petstore.swagger.io/v2/swagger.json|./openapi.yml|g' ./docs/swagger-initializer.js
-      - name: check js 2
-        run: cat docs/swagger-initializer.js
-      - name: Remove symlinks and hardlinks
-        run: find docs/ -type l -exec rm -f {} \;
+        run: sed -i 's|https://petstore.swagger.io/v2/swagger.json|./openapi.yml|g' ./dist/swagger-initializer.js
       - name: Upload static files as artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/
+          path: dist/
   deploy:
     needs: build
     permissions:
