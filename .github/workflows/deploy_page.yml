@@ -23,7 +23,7 @@ jobs:
       - name: check js
         run: cat docs/swagger-initializer.js
       - name: replace url
-        run: sed -i 's|https://petstore.swagger.io/v2/swagger.json|./docs/openapi.yml|g' ./docs/swagger-initializer.js
+        run: sed -i 's|https://petstore.swagger.io/v2/swagger.json|./openapi.yml|g' .s/swagger-initializer.js
       - name: check js 2
         run: cat docs/swagger-initializer.js
       - name: Remove symlinks and hardlinks
