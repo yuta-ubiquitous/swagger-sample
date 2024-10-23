@@ -17,7 +17,7 @@ jobs:
       - name: copy 2
         run: cp openapi.yml dist/
       - name: replace url
-        run: sed -i 's|https://petstore.swagger.io/v2/swagger.json|./openapi.yml|g' ./dist/swagger-initializer.js
+        run: sed -i 's|https://petstore.swagger.io/v2/swagger.json|openapi.yml|g' ./dist/swagger-initializer.js
       - name: Upload static files as artifact
         uses: actions/upload-pages-artifact@v3
         with:
